@@ -8,20 +8,32 @@ import { initIntro } from "./components/intro/intro.js";
 import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
 
-window.addEventListener("DOMContentLoaded", () => {
-  initDom();
-  initState();
+function initApp() {
+  window.addEventListener("DOMContentLoaded", () => {
+    initDom();
+    initState();
 
-  dom.body.classList.add("is-ready");
+    dom.body.classList.add("is-ready");
 
-  const components = [initHeader, initOverview, initMainLayout, initIntro];
+    disableScrollRestoration();
 
-  initLoader().then(() => {
-    components.forEach((init) => {
-      init();
+    const components = [initHeader, initOverview, initMainLayout, initIntro];
+
+    initLoader().then(() => {
+      components.forEach((init) => {
+        init();
+      });
+
+      inject();
+      injectSpeedInsights();
     });
-
-    inject();
-    injectSpeedInsights();
   });
-});
+}
+
+function disableScrollRestoration() {
+  if (history.scrollRestoration) {
+    history.scrollRestoration = "manual";
+  }
+}
+
+initApp();
