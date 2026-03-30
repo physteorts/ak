@@ -1,0 +1,13 @@
+header {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) scaleX(1);
+  z-index: 99;
+  width: clamp(20dvh, 20dvw, 99dvw);
+  height: 3dvh;
+  display: flex;
+  justify-content: center;
+  background-color: var(--fg);
+  border-bottom-left-radius: clamp(1dvh, 0.5dvw, 99dvw);
+  border-bottom-right-radius: clamp(1dvh, 0.5dvw, 99dvw);
+}
