@@ -5,6 +5,7 @@ import { initHeader } from "./components/header/header.js";
 import { initOverview } from "./components/overview/overview.js";
 import { initMainLayout } from "./components/main-layout/main-layout.js";
 import { initIntro } from "./components/intro/intro.js";
+import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -20,6 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
       init();
     });
 
+    inject();
     injectSpeedInsights();
   });
 });
