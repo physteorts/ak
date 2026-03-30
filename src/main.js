@@ -7,6 +7,7 @@ import { initMainLayout } from "./components/main-layout/main-layout.js";
 import { initIntro } from "./components/intro/intro.js";
 import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
+window.scrollTo(0, 0);
 
 function initApp() {
   window.addEventListener("DOMContentLoaded", () => {
@@ -14,8 +15,6 @@ function initApp() {
     initState();
 
     dom.body.classList.add("is-ready");
-
-    disableScrollRestoration();
 
     const components = [initHeader, initOverview, initMainLayout, initIntro];
 
@@ -28,12 +27,6 @@ function initApp() {
       injectSpeedInsights();
     });
   });
-}
-
-function disableScrollRestoration() {
-  if (history.scrollRestoration) {
-    history.scrollRestoration = "manual";
-  }
 }
 
 initApp();
