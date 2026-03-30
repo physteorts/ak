@@ -30,7 +30,7 @@ function loaderTimeline(onComplete) {
       "-=0.5",
     )
     .to(dom.lIcon, {
-      scale: 30,
+      scale: 20,
       rotate: 180,
       duration: 1.2,
       ease: "expo.in",

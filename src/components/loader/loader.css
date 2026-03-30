@@ -21,12 +21,5 @@
     .frame {
       stroke-width: 5;
     }
-
-    .liquid-fill {
-      fill: var(--bg);
-      stroke: var(--bg);
-      stroke-width: 7;
-      stroke-linejoin: round;
-    }
   }
 }
