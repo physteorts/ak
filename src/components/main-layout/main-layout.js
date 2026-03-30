@@ -2,7 +2,8 @@ import "./main-layout.css";
 import gsap from "gsap";
 import { dom, state } from "../../globals.js";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
-gsap.registerPlugin(ScrollSmoother);
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 let smoother;
 let updateMainLayoutTl;
