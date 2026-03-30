@@ -30,6 +30,8 @@ export function initIntro() {
       end: "+=500%",
       scrub: 1,
       pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
     },
   });
 

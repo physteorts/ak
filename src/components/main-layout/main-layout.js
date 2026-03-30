@@ -16,6 +16,7 @@ function scrollSmoother() {
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 1.2,
+    smoothTouch: 0.1,
     effects: true,
   });
 

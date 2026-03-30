@@ -1,7 +1,16 @@
 main {
+  position: fixed;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
   background-color: var(--bg);
   opacity: 0;
   visibility: hidden;
+}
+
+.section-container {
+  width: 100%;
+  position: relative;
 }
 
 section {
