@@ -1,18 +1,13 @@
 header {
   position: fixed;
-  top: -2dvh;
   left: 50%;
   transform: translate(-50%, -100%);
   z-index: 99;
   width: clamp(20dvh, 20dvw, 99dvw);
-  height: 5dvh;
+  height: 3dvh;
   display: flex;
   justify-content: center;
   background-color: var(--fg);
-  border-radius: clamp(2dvh, 1dvw, 99dvw);
-}
-
-header.overview {
-  width: 97dvw;
-  height: 100dvh;
+  border-bottom-left-radius: clamp(1dvh, 0.5dvw, 99dvw);
+  border-bottom-right-radius: clamp(1dvh, 0.5dvw, 99dvw);
 }

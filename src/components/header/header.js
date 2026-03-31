@@ -2,8 +2,8 @@ import "./header.css";
 import { dom, state } from "../../globals.js";
 import gsap from "gsap";
 import { toggleOverview } from "../overview/overview.js";
-import { Flip } from "gsap/Flip";
-gsap.registerPlugin(Flip);
+
+let headerBackgroundTl;
 
 function headerToggle() {
   dom.header.addEventListener("click", toggleOverview);
@@ -12,27 +12,33 @@ function headerToggle() {
 function headerReveal() {
   gsap.to(dom.header, {
     y: 0,
-    duration: 1.2,
+    duration: 0.5,
     ease: "power1.inOut",
   });
 }
 
-export function updateHeader() {
-  const initialState = Flip.getState(dom.header);
+function createHeaderBackgroundTimeline() {
+  const tl = gsap.timeline({ paused: true });
 
-  if (state.isOverviewOpen) {
-    dom.header.classList.add("overview");
-  } else {
-    dom.header.classList.remove("overview");
-  }
-
-  Flip.from(initialState, {
-    duration: 1,
-    ease: "expo.inOut",
+  tl.to(dom.header, {
+    backgroundColor: "var(--bg)",
+    duration: 0.5,
+    ease: "power1.inOut",
   });
+
+  return tl;
+}
+
+export function updateHeaderBackground() {
+  if (state.isOverviewOpen) {
+    headerBackgroundTl.play();
+  } else {
+    headerBackgroundTl.reverse();
+  }
 }
 
 export function initHeader() {
   headerReveal();
   headerToggle();
+  headerBackgroundTl = createHeaderBackgroundTimeline();
 }
