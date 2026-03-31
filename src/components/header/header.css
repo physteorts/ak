@@ -2,7 +2,7 @@ header {
   position: fixed;
   top: -2dvh;
   left: 50%;
-  transform: translateX(-50%) scaleX(0);
+  transform: translate(-50%, -100%);
   z-index: 99;
   width: clamp(20dvh, 20dvw, 99dvw);
   height: 5dvh;
@@ -10,8 +10,6 @@ header {
   justify-content: center;
   background-color: var(--fg);
   border-radius: clamp(2dvh, 1dvw, 99dvw);
-  opacity: 0;
-  visibility: hidden;
 }
 
 header.overview {

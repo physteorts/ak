@@ -11,9 +11,8 @@ function headerToggle() {
 
 function headerReveal() {
   gsap.to(dom.header, {
-    autoAlpha: 1,
-    scaleX: 1,
-    duration: 1,
+    y: 0,
+    duration: 1.2,
     ease: "power1.inOut",
   });
 }

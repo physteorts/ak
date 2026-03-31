@@ -7,11 +7,17 @@ gsap.registerPlugin(ScrollTrigger);
 function introTimeline() {
   gsap.set(dom.intro, { autoAlpha: 1 });
 
-  gsap.from(dom.iBackground, {
-    scale: 0,
-    duration: 1.5,
+  const tl = gsap.timeline();
+
+  tl.from(dom.iBackground, {
+    y: "100dvh",
+    duration: 2,
     ease: "power3.out",
     clearProps: "all",
+  }).from(".text-wrapper", {
+    autoAlpha: 0,
+    duration: 1,
+    ease: "power1.inOut",
   });
 }
 
