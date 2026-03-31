@@ -11,7 +11,7 @@
 
   .logo-icon {
     width: clamp(10dvh, 9dvw, 99dvw);
-    stroke: var(--bg);
+    stroke: var(--fg);
     fill: none;
     stroke-width: 6;
     stroke-linecap: round;
@@ -22,10 +22,11 @@
       stroke-opacity: 0.7;
     }
 
-    .logo-fill {
+    .liquid-fill {
       fill: var(--bg);
       stroke: var(--bg);
-      clip-path: url(#reveal-clip);
+      stroke-width: 7;
+      stroke-linejoin: round;
     }
   }
 }

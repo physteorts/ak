@@ -11,6 +11,14 @@ function loaderTimeline(onComplete) {
     rotation: -45,
     transformOrigin: "50% 50%",
   });
+  gsap.set(dom.lWave, { x: 0, y: 100 });
+
+  gsap.to(dom.lWave, {
+    x: -100,
+    duration: 1.5,
+    repeat: -1,
+    ease: "none",
+  });
 
   tl.to([dom.lFrame, dom.lLines], {
     opacity: 1,
@@ -19,22 +27,15 @@ function loaderTimeline(onComplete) {
     duration: 1.5,
     stagger: 0.1,
     ease: "expo.out",
-  })
-    .to(
-      "#filler-rect",
-      {
-        attr: { y: 0 },
-        duration: 2.5,
-        ease: "power3.inOut",
-      },
-      "-=1",
-    )
-    .to(dom.lIcon, {
-      scale: 15,
-      rotate: 45,
-      duration: 1,
-      ease: "power1.inOut",
-    });
+  }).to(
+    dom.lWave,
+    {
+      y: -101,
+      duration: 3.5,
+      ease: "power2.inOut",
+    },
+    "-=2",
+  );
 
   return tl;
 }

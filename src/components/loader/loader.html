@@ -5,12 +5,15 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <defs>
-      <clipPath id="reveal-clip">
-        <rect id="filler-rect" x="0" y="100" width="100" height="100" />
+      <clipPath id="fill-clip">
+        <path
+          class="liquid-wave"
+          d="M 0 100 C 20 90 30 110 50 100 C 70 90 80 110 100 100 C 120 90 130 110 150 100 C 170 90 180 110 200 100 V 200 H 0 Z"
+        />
       </clipPath>
     </defs>
 
-    <g class="logo-strokes">
+    <g class="outline-paths">
       <path
         class="frame"
         d="M 50 5 L 89 27.5 V 72.5 L 50 95 L 11 72.5 V 27.5 Z"
@@ -22,8 +25,10 @@
       <path class="ak-line k-down" d="M 50 50 L 78 70" />
     </g>
 
-    <g class="logo-fill">
-      <path d="M 50 5 L 89 27.5 V 72.5 L 50 95 L 11 72.5 V 27.5 Z" />
-    </g>
+    <path
+      class="liquid-fill"
+      clip-path="url(#fill-clip)"
+      d="M 50 5 L 89 27.5 V 72.5 L 50 95 L 11 72.5 V 27.5 Z"
+    />
   </svg>
 </div>

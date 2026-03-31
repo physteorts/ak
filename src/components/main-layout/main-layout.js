@@ -11,7 +11,10 @@ function mainReveal() {
 function createMainLayoutTimeline() {
   const tl = gsap.timeline({ paused: true });
 
-  tl.to(dom.main, {
+  tl.to(dom.body, {
+    backgroundColor: "var(--fg)",
+    duration: 0,
+  }).to(dom.main, {
     scale: 0.95,
     borderTopLeftRadius: "clamp(4dvh,4dvw,99dvw)",
     borderTopRightRadius: "clamp(4dvh,4dvw,99dvw)",
