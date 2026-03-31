@@ -10,11 +10,11 @@ function headerToggle() {
 }
 
 function headerReveal() {
-  gsap.from(dom.header, {
-    scaleX: 0,
+  gsap.to(dom.header, {
+    autoAlpha: 1,
+    scaleX: 1,
     duration: 1,
     ease: "power1.inOut",
-    clearProps: "all",
   });
 }
 
@@ -30,11 +30,6 @@ export function updateHeader() {
   Flip.from(initialState, {
     duration: 1,
     ease: "expo.inOut",
-    onComplete: () => {
-      if (!state.isOverviewOpen) {
-        gsap.set(dom.header, { clearProps: "all" });
-      }
-    },
   });
 }
 

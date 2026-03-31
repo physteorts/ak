@@ -24,17 +24,20 @@
   left: clamp(2dvh, 1dvw, 99dvw);
   z-index: 10;
   border-radius: clamp(2dvh, 1dvw, 99dvw);
+  max-width: calc(100% - (clamp(2dvh, 1dvw, 99dvw) * 1));
 }
 
 .accent-bar.two {
   left: clamp(4dvh, 2dvw, 99dvw);
   height: 90%;
   background-color: var(--fg);
+  max-width: calc(100% - (clamp(2dvh, 1dvw, 99dvw) * 2));
 }
 
 .accent-bar.three {
   left: clamp(6dvh, 3dvw, 99dvw);
   height: 85%;
+  max-width: calc(100% - (clamp(2dvh, 1dvw, 99dvw) * 3));
 }
 
 .text-wrapper {

@@ -18,7 +18,7 @@ function introTimeline() {
 export function initIntro() {
   introTimeline();
 
-  gsap.set(".reveal-wrapper", { x: "10dvw", autoAlpha: 0 });
+  gsap.set(".reveal-wrapper", { x: "5dvw", autoAlpha: 0 });
   gsap.set([".one", ".two", ".three"], {
     width: 0,
   });
@@ -38,14 +38,14 @@ export function initIntro() {
   scrollTl
     .to(".text-wrapper", {
       opacity: 0,
-      x: "-10dvw",
+      x: "-5dvw",
       duration: 1,
       ease: "power2.inOut",
     })
     .to(
       ".one",
       {
-        width: "99%",
+        width: "100%",
       },
       "-=0.5",
     )
@@ -61,13 +61,13 @@ export function initIntro() {
     )
     .to(".first-reveal", {
       opacity: 0,
-      x: "-10dvw",
+      x: "-5dvw",
       duration: 1,
     })
     .to(
       ".two",
       {
-        width: "98%",
+        width: "100%",
       },
       "-=0.5",
     )
@@ -82,13 +82,13 @@ export function initIntro() {
     )
     .to(".second-reveal", {
       opacity: 0,
-      x: "-10dvw",
+      x: "-5dvw",
       duration: 1,
     })
     .to(
       ".three",
       {
-        width: "97%",
+        width: "100%",
       },
       "-=0.5",
     )
