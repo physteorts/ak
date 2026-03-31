@@ -38,8 +38,9 @@ function loaderTimeline(onComplete) {
       "-=2",
     )
     .to(dom.lIcon, {
-      scale: 15,
-      duration: 1,
+      width: "110dvw",
+      rotate: 30,
+      duration: 1.2,
       ease: "expo.in",
     });
 
