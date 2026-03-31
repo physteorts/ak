@@ -13,14 +13,27 @@ function createMainLayoutTimeline() {
 
   tl.to(dom.body, {
     backgroundColor: "var(--fg)",
+    overflow: "hidden",
     duration: 0,
-  }).to(dom.main, {
-    scale: 0.95,
-    borderTopLeftRadius: "clamp(4dvh,4dvw,99dvw)",
-    borderTopRightRadius: "clamp(4dvh,4dvw,99dvw)",
-    duration: 0.5,
-    ease: "power1.inOut",
-  });
+  })
+    .to(dom.main, {
+      y: "5vh",
+      scale: 0.95,
+      borderTopLeftRadius: "clamp(4vh,4vw,99vw)",
+      borderTopRightRadius: "clamp(4vh,4vw,99vw)",
+      duration: 0.4,
+      ease: "power1.inOut",
+    })
+    .to(
+      dom.sectionContainer,
+      {
+        opacity: 0.4,
+        filter: "blur(8px)",
+        duration: 0.4,
+        ease: "power1.inOut",
+      },
+      "<",
+    );
 
   return tl;
 }

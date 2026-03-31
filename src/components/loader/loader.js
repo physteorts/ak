@@ -16,7 +16,6 @@ function loaderTimeline(onComplete) {
   gsap.to(dom.lWave, {
     x: -100,
     duration: 1.5,
-    repeat: -1,
     ease: "none",
   });
 

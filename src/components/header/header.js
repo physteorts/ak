@@ -22,8 +22,8 @@ function createHeaderBackgroundTimeline() {
 
   tl.to(dom.header, {
     backgroundColor: "var(--bg)",
-    duration: 0.5,
-    ease: "power1.inOut",
+    duration: 0.4,
+    ease: "power2.inOut",
   });
 
   return tl;

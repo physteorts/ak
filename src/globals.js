@@ -6,10 +6,11 @@ export const dom = {
   lFrame: null,
   lLines: null,
   header: null,
+  overviewOverlay: null,
+  overviewLinks: null,
   main: null,
   sectionContainer: null,
   intro: null,
-  iBackground: null,
 };
 
 export const state = {
@@ -24,10 +25,11 @@ export function initDom() {
   dom.lLines = document.querySelectorAll(".loading-screen .ak-line");
   dom.lFrame = document.querySelector(".loading-screen .frame");
   dom.header = document.querySelector("header");
+  dom.overviewOverlay = document.querySelector(".overview-overlay")
+  dom.overviewLinks = document.querySelectorAll(".overview-link");
   dom.main = document.querySelector("main");
   dom.sectionContainer = document.querySelector(".section-container");
   dom.intro = document.querySelector("#intro");
-  dom.iBackground = document.querySelector("#intro .background");
 }
 
 export function initState() {

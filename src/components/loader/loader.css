@@ -1,7 +1,7 @@
 .loading-screen {
   position: fixed;
-  width: 100dvw;
-  height: 100dvh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
   overflow: hidden;
 
   .logo-icon {
-    width: clamp(10dvh, 9dvw, 99dvw);
+    width: clamp(10vh, 9vw, 99vw);
     stroke: var(--fg);
     fill: none;
     stroke-width: 6;

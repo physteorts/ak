@@ -4,7 +4,7 @@
 }
 
 .large-text {
-  font-size: clamp(2.5rem, 8dvw, 99dvw);
+  font-size: clamp(2.5rem, 8vw, 99vw);
   font-weight: 900;
   line-height: 0.85;
   text-transform: uppercase;

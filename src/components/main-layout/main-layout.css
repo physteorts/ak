@@ -1,12 +1,22 @@
 main {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
   background-color: var(--bg);
   opacity: 0;
   visibility: hidden;
 }
 
+.section-container {
+  width: 100%;
+  height: auto;
+}
+
 section {
-  width: 100dvw;
-  height: 100dvh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;

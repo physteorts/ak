@@ -3,11 +3,11 @@ header {
   left: 50%;
   transform: translate(-50%, -100%);
   z-index: 99;
-  width: clamp(20dvh, 20dvw, 99dvw);
-  height: 3dvh;
+  width: clamp(20vh, 20vw, 99vw);
+  height: 3vh;
   display: flex;
   justify-content: center;
   background-color: var(--fg);
-  border-bottom-left-radius: clamp(1dvh, 0.5dvw, 99dvw);
-  border-bottom-right-radius: clamp(1dvh, 0.5dvw, 99dvw);
+  border-bottom-left-radius: clamp(1vh, 0.5vw, 99vw);
+  border-bottom-right-radius: clamp(1vh, 0.5vw, 99vw);
 }
