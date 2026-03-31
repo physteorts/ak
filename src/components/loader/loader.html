@@ -4,14 +4,31 @@
     class="logo-icon"
     xmlns="http://www.w3.org/2000/svg"
   >
+    <defs>
+      <clipPath id="fill-clip">
+        <path
+          class="liquid-wave"
+          d="M 0 100 C 20 90 30 110 50 100 C 70 90 80 110 100 100 C 120 90 130 110 150 100 C 170 90 180 110 200 100 V 200 H 0 Z"
+        />
+      </clipPath>
+    </defs>
+
+    <g class="outline-paths">
+      <path
+        class="frame"
+        d="M 50 5 L 89 27.5 V 72.5 L 50 95 L 11 72.5 V 27.5 Z"
+      />
+      <path class="ak-line a-stem" d="M 50 20 L 22 33 V 70" />
+      <path class="ak-line a-bar" d="M 22 51 H 42" />
+      <path class="ak-line spine" d="M 50 20 V 85" />
+      <path class="ak-line k-up" d="M 50 50 L 78 33" />
+      <path class="ak-line k-down" d="M 50 50 L 78 70" />
+    </g>
+
     <path
-      class="frame"
+      class="liquid-fill"
+      clip-path="url(#fill-clip)"
       d="M 50 5 L 89 27.5 V 72.5 L 50 95 L 11 72.5 V 27.5 Z"
     />
-    <path class="ak-line a-stem" d="M 50 20 L 22 33 V 70" />
-    <path class="ak-line a-bar" d="M 22 51 H 42" />
-    <path class="ak-line spine" d="M 50 20 V 85" />
-    <path class="ak-line k-up" d="M 50 50 L 78 33" />
-    <path class="ak-line k-down" d="M 50 50 L 78 70" />
   </svg>
 </div>
