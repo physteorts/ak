@@ -21,8 +21,8 @@ function createHeaderTimeline() {
   const tl = gsap.timeline({ paused: true });
 
   tl.to(dom.header, {
-    width: "98vw",
-    height: "98vh",
+    width: "98dvw",
+    height: "98dvh",
     duration: 1.2,
     ease: "expo.inOut",
   });
