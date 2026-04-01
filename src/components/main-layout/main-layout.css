@@ -3,13 +3,9 @@ main {
   height: 100vh;
   overflow: hidden;
   position: fixed;
-  top: 0;
-  left: 0;
   background-color: var(--bg);
   opacity: 0;
   visibility: hidden;
-  contain: paint;
-  transform-origin: top center;
 }
 
 .section-container {

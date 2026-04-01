@@ -3,7 +3,7 @@ import { dom, state } from "../../globals.js";
 import gsap from "gsap";
 import { toggleOverview } from "../overview/overview.js";
 
-let headerBackgroundTl;
+let headerTl;
 
 function headerToggle() {
   dom.header.addEventListener("click", toggleOverview);
@@ -17,28 +17,29 @@ function headerReveal() {
   });
 }
 
-function createHeaderBackgroundTimeline() {
+function createHeaderTimeline() {
   const tl = gsap.timeline({ paused: true });
 
   tl.to(dom.header, {
-    backgroundColor: "var(--bg)",
-    duration: 0.4,
-    ease: "power2.inOut",
+    width: "98vw",
+    height: "98vh",
+    duration: 1.2,
+    ease: "expo.inOut",
   });
 
   return tl;
 }
 
-export function updateHeaderBackground() {
+export function updateHeader() {
   if (state.isOverviewOpen) {
-    headerBackgroundTl.play();
+    headerTl.play();
   } else {
-    headerBackgroundTl.reverse();
+    headerTl.reverse();
   }
 }
 
 export function initHeader() {
   headerReveal();
   headerToggle();
-  headerBackgroundTl = createHeaderBackgroundTimeline();
+  headerTl = createHeaderTimeline();
 }

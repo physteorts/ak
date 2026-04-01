@@ -7,7 +7,6 @@ import { initMainLayout } from "./components/main-layout/main-layout.js";
 import { initIntro } from "./components/intro/intro.js";
 import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
-window.scrollTo(0, 0);
 
 function initApp() {
   window.addEventListener("DOMContentLoaded", () => {

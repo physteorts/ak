@@ -1,7 +1,7 @@
 import "./overview.css";
 import { dom, state } from "../../globals";
-import { updateHeaderBackground } from "../header/header";
-import { updateMainLayout, smoother } from "../main-layout/main-layout";
+import { updateHeader } from "../header/header";
+import { smoother } from "../main-layout/main-layout";
 import gsap from "gsap";
 
 let overviewOverlayTl;
@@ -40,8 +40,7 @@ function updateOverviewOverlay() {
 
 export function toggleOverview() {
   state.isOverviewOpen = !state.isOverviewOpen;
-  updateHeaderBackground();
-  updateMainLayout();
+  updateHeader();
   updateOverviewOverlay();
 }
 
