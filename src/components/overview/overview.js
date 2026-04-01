@@ -1,15 +1,21 @@
 import "./overview.css";
 import { dom, state } from "../../globals";
 import { updateHeaderBackground } from "../header/header";
-import { updateMainLayout } from "../main-layout/main-layout";
+import { updateMainLayout, smoother } from "../main-layout/main-layout";
 import gsap from "gsap";
 
 let overviewOverlayTl;
 
 function overviewLinkToggle() {
   dom.overviewLinks.forEach((link) => {
-    link.addEventListener("click", () => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const target = link.getAttribute("href");
+
       toggleOverview();
+
+      smoother.scrollTo(target, true, "top top");
     });
   });
 }

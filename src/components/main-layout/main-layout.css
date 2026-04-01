@@ -1,9 +1,8 @@
 main {
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-behavior: smooth;
+  overflow: hidden;
+  position: fixed;
   background-color: var(--bg);
   opacity: 0;
   visibility: hidden;
