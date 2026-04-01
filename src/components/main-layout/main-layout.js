@@ -18,6 +18,7 @@ function createSmoother() {
     content: dom.sectionContainer,
     smooth: 1.2,
     effects: true,
+    normalizeScroll: true,
   });
 }
 
