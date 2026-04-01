@@ -8,6 +8,7 @@ main {
   background-color: var(--bg);
   opacity: 0;
   visibility: hidden;
+  contain: paint;
   transform-origin: top center;
 }
 

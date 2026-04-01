@@ -26,6 +26,7 @@ function createMainLayoutTimeline() {
 
   tl.to(dom.body, {
     backgroundColor: "var(--fg)",
+    overflow: "hidden",
     duration: 0,
   })
     .to(dom.main, {
