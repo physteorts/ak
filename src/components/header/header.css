@@ -1,7 +1,5 @@
 header {
   position: fixed;
-  left: 50%;
-  transform: translate(-50%, -100%);
   z-index: 98;
   width: clamp(20dvh, 20dvw, 99dvw);
   height: 3vh;
@@ -10,4 +8,6 @@ header {
   background-color: var(--fg);
   border-bottom-left-radius: clamp(1dvh, 0.5dvw, 99vw);
   border-bottom-right-radius: clamp(1dvh, 0.5dvw, 99vw);
+  opacity: 0;
+  visibility: hidden;
 }

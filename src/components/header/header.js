@@ -10,8 +10,16 @@ function headerToggle() {
 }
 
 function headerReveal() {
+  gsap.set(dom.header, {
+    left: "50%",
+    xPercent: -50,
+    yPercent: -100,
+    autoAlpha: 0,
+  });
+
   gsap.to(dom.header, {
-    y: 0,
+    autoAlpha: 1,
+    yPercent: 0,
     duration: 0.5,
     ease: "power1.inOut",
   });
