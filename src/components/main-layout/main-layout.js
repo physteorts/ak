@@ -29,8 +29,8 @@ function createMainLayoutTimeline() {
     duration: 0,
   })
     .to(dom.main, {
-      y: "5vh",
-      scale: 0.95,
+      y: "8vh",
+      scaleX: 0.95,
       borderTopLeftRadius: "clamp(4vh,4vw,99vw)",
       borderTopRightRadius: "clamp(4vh,4vw,99vw)",
       duration: 0.4,
