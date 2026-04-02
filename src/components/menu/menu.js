@@ -1,6 +1,7 @@
 import "./menu.css";
 import { dom, state } from "../../globals";
 import { smoother } from "../main-layout/main-layout";
+import { updateMenuToggle } from "../header/header";
 import gsap from "gsap";
 
 let menuOverlayTl;
@@ -63,6 +64,7 @@ function updateMenuOverlay() {
 export function toggleMenu() {
   state.isMenuOpen = !state.isMenuOpen;
   updateMenuOverlay();
+  updateMenuToggle();
 }
 
 export function initMenu() {

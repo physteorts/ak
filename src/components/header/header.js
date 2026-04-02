@@ -6,15 +6,7 @@ import { toggleMenu } from "../menu/menu.js";
 let menuToggleTl;
 
 function menuToggle() {
-  dom.menuToggle.addEventListener("click", () => {
-    toggleMenu();
-
-    if (state.isMenuOpen) {
-      menuToggleTl.play();
-    } else {
-      menuToggleTl.reverse();
-    }
-  });
+  dom.menuToggle.addEventListener("click", toggleMenu);
 }
 
 function headerReveal() {
@@ -74,6 +66,14 @@ function createMenuToggleTimeline() {
   );
 
   return tl;
+}
+
+export function updateMenuToggle() {
+  if (state.isMenuOpen) {
+    menuToggleTl.play();
+  } else {
+    menuToggleTl.reverse();
+  }
 }
 
 export function initHeader() {
