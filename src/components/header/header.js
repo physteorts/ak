@@ -1,10 +1,20 @@
 import "./header.css";
-import { dom } from "../../globals.js";
+import { dom, state } from "../../globals.js";
 import gsap from "gsap";
 import { toggleMenu } from "../menu/menu.js";
 
+let menuToggleTl;
+
 function menuToggle() {
-  dom.menuToggle.addEventListener("click", toggleMenu);
+  dom.menuToggle.addEventListener("click", () => {
+    toggleMenu();
+
+    if (state.isMenuOpen) {
+      menuToggleTl.play();
+    } else {
+      menuToggleTl.reverse();
+    }
+  });
 }
 
 function headerReveal() {
@@ -24,17 +34,50 @@ function headerReveal() {
     duration: 1,
     ease: "power2.inOut",
   })
-    .to(dom.header, {
-      scale: 1,
-      duration: 1,
-      ease: "power2.inOut",
-    }, "-=0.3")
+    .to(
+      dom.header,
+      {
+        scale: 1,
+        duration: 1,
+        ease: "power2.inOut",
+      },
+      "-=0.3",
+    )
     .to(dom.menuToggle, {
       autoAlpha: 1,
     });
 }
 
+function createMenuToggleTimeline() {
+  const tl = gsap.timeline({
+    paused: true,
+    defaults: {
+      duration: 0.5,
+      ease: "power1.inOut",
+    },
+  });
+
+  tl.set(dom.menuCloseLabel, {
+    y: 15,
+  });
+
+  tl.to(dom.menuOpenLabel, {
+    autoAlpha: 0,
+    y: -15,
+  }).to(
+    dom.menuCloseLabel,
+    {
+      autoAlpha: 1,
+      y: 0,
+    },
+    "-=0.5",
+  );
+
+  return tl;
+}
+
 export function initHeader() {
   headerReveal();
   menuToggle();
+  menuToggleTl = createMenuToggleTimeline();
 }

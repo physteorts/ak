@@ -7,6 +7,8 @@ export const dom = {
   lLines: null,
   header: null,
   menuToggle: null,
+  menuOpenLabel: null,
+  menuCloseLabel: null,
   menuOverlay: null,
   menuContent: null,
   menuLinks: null,
@@ -28,6 +30,8 @@ export function initDom() {
   dom.lFrame = document.querySelector(".loading-screen .frame");
   dom.header = document.querySelector("header");
   dom.menuToggle = document.querySelector(".menu-toggle");
+  dom.menuOpenLabel = document.querySelector(".open-label");
+  dom.menuCloseLabel = document.querySelector(".close-label");
   dom.menuOverlay = document.querySelector(".menu-overlay");
   dom.menuContent = document.querySelector(".menu-content");
   dom.menuLinks = document.querySelectorAll(".menu-link");
