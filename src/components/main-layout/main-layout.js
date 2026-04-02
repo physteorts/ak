@@ -11,45 +11,49 @@ function mainReveal() {
   gsap.set(dom.main, { autoAlpha: 1 });
 }
 
+function getResponsiveRadius() {
+  const vh = window.innerHeight * 0.025;
+  const vw = window.innerWidth * 0.025;
+  const clampedValue = Math.max(vh, Math.min(vw, window.innerWidth * 0.99));
+  return clampedValue;
+}
+
 function initElasticScroll() {
   const allSections = gsap.utils.toArray("section");
-  let isRunning = false;
 
-  const peekEffect = gsap.timeline({
-    paused: true,
-    onComplete: () => {
-      gsap.delayedCall(0.1, () => {
-        isRunning = false;
-      });
-    },
-  });
-
-  peekEffect
-    .to(allSections, {
-      scale: 0.9,
-      borderRadius: "var(--section-radius)",
-      duration: 0.6,
-      ease: "power1.inOut",
-    })
-    .to(
-      allSections,
-      {
-        scale: 1,
-        borderRadius: "var(--section-full-radius)",
-        duration: 0.6,
-        ease: "power1.inOut",
-      },
-      "+=0.5",
-    );
+  let scrollTimeout;
+  let isScaledDown = false;
 
   ScrollTrigger.create({
     onUpdate: (self) => {
       const velocity = Math.abs(self.getVelocity());
-      const isMovingFast = velocity > 200;
+      const isMovingFast = velocity > 150;
+      const isNearEnd = self.progress > 0.98;
 
-      if (!isRunning && isMovingFast) {
-        isRunning = true;
-        peekEffect.restart();
+      if (isMovingFast && !isNearEnd) {
+        if (!isScaledDown) {
+          isScaledDown = true;
+          gsap.to(allSections, {
+            scale: 0.9,
+            borderRadius: () => `${getResponsiveRadius()}px`,
+            duration: 0.6,
+            ease: "power2.out",
+            overwrite: true,
+          });
+        }
+
+        clearTimeout(scrollTimeout);
+
+        scrollTimeout = setTimeout(() => {
+          isScaledDown = false;
+          gsap.to(allSections, {
+            scale: 1,
+            borderRadius: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            overwrite: true,
+          });
+        }, 150);
       }
     },
   });
