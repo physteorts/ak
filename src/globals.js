@@ -6,15 +6,16 @@ export const dom = {
   lFrame: null,
   lLines: null,
   header: null,
-  overviewOverlay: null,
-  overviewLinks: null,
+  menuToggle: null,
+  menuOverlay: null,
+  menuLinks: null,
   main: null,
   sectionContainer: null,
   intro: null,
 };
 
 export const state = {
-  isOverviewOpen: null,
+  isMenuOpen: null,
 };
 
 export function initDom() {
@@ -25,13 +26,14 @@ export function initDom() {
   dom.lLines = document.querySelectorAll(".loading-screen .ak-line");
   dom.lFrame = document.querySelector(".loading-screen .frame");
   dom.header = document.querySelector("header");
-  dom.overviewOverlay = document.querySelector(".overview-overlay")
-  dom.overviewLinks = document.querySelectorAll(".overview-link");
+  dom.menuToggle = document.querySelector(".menu-toggle");
+  dom.menuOverlay = document.querySelector(".menu-overlay");
+  dom.menuLinks = document.querySelectorAll(".menu-link");
   dom.main = document.querySelector("main");
   dom.sectionContainer = document.querySelector(".section-container");
   dom.intro = document.querySelector("#intro");
 }
 
 export function initState() {
-  state.isOverviewOpen = false;
+  state.isMenuOpen = false;
 }

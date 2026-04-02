@@ -1,13 +1,41 @@
 header {
   position: fixed;
-  z-index: 98;
-  width: clamp(20dvh, 20dvw, 99dvw);
-  height: 3vh;
+  top: 1vh;
+  z-index: 99;
+  height: 5vh;
   display: flex;
+  padding: 0 calc(0.5rem + clamp(1vh, 0.5vw, 99vw));
   justify-content: center;
   background-color: var(--fg);
-  border-bottom-left-radius: clamp(1dvh, 0.5dvw, 99vw);
-  border-bottom-right-radius: clamp(1dvh, 0.5dvw, 99vw);
+  border-radius: calc(0.5rem + clamp(1vh, 0.5vw, 99vw));
   opacity: 0;
   visibility: hidden;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.menu-icon {
+  overflow: visible;
+  height: calc(0.5rem + 20%);
+  fill: var(--bg);
+  transition: transform 0.5s ease;
+}
+
+.text {
+  font-size: calc(0.5rem + clamp(1vh, 0.5vw, 99vw));
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.menu-toggle:hover .menu-icon {
+  transform: rotate(-270deg);
 }

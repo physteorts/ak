@@ -1,28 +1,27 @@
-.overview-overlay {
+.menu-overlay {
   position: fixed;
-  top: 0;
+  top: 8vh;
   left: 0;
-  width: 100%;
-  height: 98vh;
+  width: 100vw;
+  height: 100vh;
+  z-index: 98;
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  align-items: center;
-  z-index: 99;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-.overview-content {
+.menu-content {
+  background: var(--fg);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: clamp(1rem, 5vh, 99vw);
+  border-radius: calc(0.5rem + clamp(1vh, 0.5vw, 99vw));
+  padding: calc(0.5rem + clamp(2vh, 1vw, 99dvw));
 }
 
-.overview-link {
-  position: relative;
+.menu-link {
   font-size: clamp(6vh, 4.5vw, 99vh);
   font-weight: 900;
   text-decoration: none;

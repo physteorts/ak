@@ -3,7 +3,7 @@ main {
   height: 100vh;
   overflow: hidden;
   position: fixed;
-  background-color: var(--bg);
+  background-color: var(--fg);
   opacity: 0;
   visibility: hidden;
 }
@@ -19,4 +19,6 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--bg);
+  overflow: hidden;
 }
