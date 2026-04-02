@@ -65,8 +65,7 @@ function createSmoother() {
   smoother = ScrollSmoother.create({
     wrapper: dom.main,
     content: dom.sectionContainer,
-    smooth: 2,
-    smoothTouch: 0.1,
+    smooth: 1.5,
     effects: true,
   });
 }
