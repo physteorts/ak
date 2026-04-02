@@ -28,16 +28,16 @@ function initElasticScroll() {
     .to(allSections, {
       scale: 0.9,
       borderRadius: "var(--section-radius)",
-      duration: 1,
-      ease: "power2.out",
+      duration: 0.6,
+      ease: "power1.inOut",
     })
     .to(
       allSections,
       {
         scale: 1,
-        borderRadius: "0px",
-        duration: 1,
-        ease: "power3.out",
+        borderRadius: "var(--section-full-radius)",
+        duration: 0.6,
+        ease: "power1.inOut",
       },
       "+=0.5",
     );
@@ -46,9 +46,8 @@ function initElasticScroll() {
     onUpdate: (self) => {
       const velocity = Math.abs(self.getVelocity());
       const isMovingFast = velocity > 200;
-      const isNearEnd = self.progress > 0.95;
 
-      if (!isRunning && isMovingFast && !isNearEnd) {
+      if (!isRunning && isMovingFast) {
         isRunning = true;
         peekEffect.restart();
       }

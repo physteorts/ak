@@ -21,4 +21,5 @@ section {
   align-items: center;
   background-color: var(--bg);
   overflow: hidden;
+  outline: 1px solid var(--bg);
 }

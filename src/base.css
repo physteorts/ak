@@ -4,6 +4,7 @@
   --bg: rgb(10, 10, 10);
   --fg: rgb(230, 230, 230);
   --section-radius: calc(1rem + clamp(2vh, 2vw, 99vw));
+  --section-full-radius: "0px";
 }
 
 * {

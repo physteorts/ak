@@ -34,6 +34,7 @@ header {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  transform: translateY(0.3px);
 }
 
 .menu-toggle:hover .menu-icon {
