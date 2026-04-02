@@ -19,8 +19,6 @@
   flex-direction: column;
   border-radius: calc(0.7rem + clamp(1.4vh, 0.7vw, 99vw));
   padding: calc(0.5rem + clamp(2vh, 1vw, 99dvw));
-  opacity: 0;
-  visibility: hidden;
 }
 
 .menu-link {

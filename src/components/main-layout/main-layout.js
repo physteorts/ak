@@ -36,7 +36,7 @@ function initElasticScroll() {
         if (!isScaledDown) {
           isScaledDown = true;
           gsap.to(allSections, {
-            scale: isTouch ? 0.95 : 0.9,
+            scale: isTouch ? 0.93 : 0.9,
             borderRadius: `${getResponsiveRadius()}px`,
             duration: 0.6,
             ease: "power2.out",
