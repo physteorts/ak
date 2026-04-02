@@ -64,6 +64,7 @@ function createSmoother() {
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 2,
+    smoothTouch: 1,
     effects: true,
   });
 }
