@@ -28,7 +28,7 @@ function headerReveal() {
       scale: 1,
       duration: 1,
       ease: "power2.inOut",
-    })
+    }, "-=0.3")
     .to(dom.menuToggle, {
       autoAlpha: 1,
     });

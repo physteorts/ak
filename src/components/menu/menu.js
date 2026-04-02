@@ -27,14 +27,25 @@ function createMenuOverlayTimeline() {
 
   tl.to(dom.menuOverlay, {
     autoAlpha: 1,
-  }).to(
-    dom.menuLinks,
-    {
-      autoAlpha: 1,
-      stagger: 0.05,
-    },
-    "-=0.2",
-  );
+  })
+    .fromTo(
+      dom.menuContent,
+      {
+        y: 20,
+      },
+      {
+        y: 0,
+      },
+      "<",
+    )
+    .to(
+      dom.menuLinks,
+      {
+        autoAlpha: 1,
+        stagger: 0.05,
+      },
+      "-=0.2",
+    );
 
   return tl;
 }
