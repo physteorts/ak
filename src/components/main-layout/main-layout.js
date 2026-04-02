@@ -24,18 +24,20 @@ function initElasticScroll() {
   let scrollTimeout;
   let isScaledDown = false;
 
+  const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
   ScrollTrigger.create({
     onUpdate: (self) => {
       const velocity = Math.abs(self.getVelocity());
-      const isMovingFast = velocity > 150;
+      const threshold = isTouch ? 300 : 150;
       const isNearEnd = self.progress > 0.98;
 
-      if (isMovingFast && !isNearEnd) {
+      if (velocity > threshold && !isNearEnd) {
         if (!isScaledDown) {
           isScaledDown = true;
           gsap.to(allSections, {
-            scale: 0.9,
-            borderRadius: () => `${getResponsiveRadius()}px`,
+            scale: isTouch ? 0.95 : 0.9,
+            borderRadius: `${getResponsiveRadius()}px`,
             duration: 0.6,
             ease: "power2.out",
             overwrite: true,
@@ -64,7 +66,7 @@ function createSmoother() {
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 2,
-    smoothTouch: 0.2,
+    smoothTouch: 0.1,
     effects: true,
   });
 }
