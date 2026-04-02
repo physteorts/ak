@@ -8,6 +8,7 @@ export const dom = {
   header: null,
   menuToggle: null,
   menuOverlay: null,
+  menuContent: null,
   menuLinks: null,
   main: null,
   sectionContainer: null,
@@ -28,6 +29,7 @@ export function initDom() {
   dom.header = document.querySelector("header");
   dom.menuToggle = document.querySelector(".menu-toggle");
   dom.menuOverlay = document.querySelector(".menu-overlay");
+  dom.menuContent = document.querySelector(".menu-content");
   dom.menuLinks = document.querySelectorAll(".menu-link");
   dom.main = document.querySelector("main");
   dom.sectionContainer = document.querySelector(".section-container");

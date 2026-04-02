@@ -17,15 +17,19 @@
   background: var(--fg);
   display: flex;
   flex-direction: column;
-  border-radius: calc(0.5rem + clamp(1vh, 0.5vw, 99vw));
+  border-radius: calc(0.7rem + clamp(1.4vh, 0.7vw, 99vw));
   padding: calc(0.5rem + clamp(2vh, 1vw, 99dvw));
+  opacity: 0;
+  visibility: hidden;
 }
 
 .menu-link {
-  font-size: clamp(6vh, 4.5vw, 99vh);
+  font-size: clamp(4vh, 3vw, 99vh);
   font-weight: 900;
   text-decoration: none;
   text-transform: uppercase;
   color: var(--bg);
   pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
 }
