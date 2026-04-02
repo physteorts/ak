@@ -53,7 +53,7 @@ function initElasticScroll() {
             ease: "power3.out",
             overwrite: true,
           });
-        }, 150);
+        }, 300);
       }
     },
   });
