@@ -11,6 +11,7 @@ main {
 .section-container {
   width: 100%;
   height: auto;
+  overflow: visible;
 }
 
 section {

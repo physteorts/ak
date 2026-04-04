@@ -9,7 +9,7 @@
 >
   <style>
     svg {
-    transform: scale(1.1);
+    transform: scale(1.05);
     }
     path {
     stroke: rgb(230, 230, 230);

@@ -1,6 +1,7 @@
 export const dom = {
   body: null,
   loader: null,
+  lText: null,
   lIcon: null,
   lWave: null,
   lFrame: null,
@@ -14,16 +15,21 @@ export const dom = {
   menuLinks: null,
   main: null,
   sectionContainer: null,
+  allSections: null,
   intro: null,
+  experiments: null,
+  resume: null,
+  contact: null,
 };
 
 export const state = {
-  isMenuOpen: null,
+  isOverviewOpen: null,
 };
 
 export function initDom() {
   dom.body = document.body;
   dom.loader = document.querySelector(".loading-screen");
+  dom.lText = document.querySelector(".loading-screen .loading-text");
   dom.lIcon = document.querySelector(".loading-screen .logo-icon");
   dom.lWave = document.querySelector(".loading-screen .liquid-wave");
   dom.lLines = document.querySelectorAll(".loading-screen .ak-line");
@@ -37,9 +43,13 @@ export function initDom() {
   dom.menuLinks = document.querySelectorAll(".menu-link");
   dom.main = document.querySelector("main");
   dom.sectionContainer = document.querySelector(".section-container");
+  dom.allSections = document.querySelectorAll("section");
   dom.intro = document.querySelector("#intro");
+  dom.experiments = document.querySelector("#experiments");
+  dom.resume = document.querySelector("#resume");
+  dom.contact = document.querySelector("#contact");
 }
 
 export function initState() {
-  state.isMenuOpen = false;
+  state.isOverviewOpen = false;
 }

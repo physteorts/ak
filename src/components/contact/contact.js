@@ -1,25 +1,13 @@
-import "./intro.css";
+import "./contact.css";
 import { dom } from "../../globals";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-function introTimeline() {
-  gsap.set(dom.intro, { autoAlpha: 1 });
-
-  gsap.from(".large-text", {
-    autoAlpha: 0,
-    duration: 1,
-    ease: "power1.inOut",
-  });
-}
-
-export function initIntro() {
-  introTimeline();
-
+export function initContact() {
   gsap.timeline({
     scrollTrigger: {
-      trigger: dom.intro,
+      trigger: dom.contact,
       start: "top top",
       end: "+=200%",
       scrub: true,

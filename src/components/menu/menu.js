@@ -1,21 +1,25 @@
 import "./menu.css";
 import { dom, state } from "../../globals";
-import { smoother } from "../main-layout/main-layout";
+import {
+  smoother,
+  toggleOverview,
+  focusOverviewSection,
+} from "../main-layout/main-layout.js";
 import { updateMenuToggle } from "../header/header";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 let menuOverlayTl;
 
-function menuLinkToggle() {
-  dom.menuLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
+function sectionOverviewToggle() {
+  dom.allSections.forEach((section) => {
+    section.addEventListener("click", () => {
+      if (!state.isOverviewOpen) return;
 
-      const target = link.getAttribute("href");
-
-      toggleMenu();
-
-      smoother.scrollTo(target, true, "top top");
+      focusOverviewSection(section);
+      state.isOverviewOpen = false;
+      updateMenuToggle();
     });
   });
 }
@@ -51,23 +55,13 @@ function createMenuOverlayTimeline() {
   return tl;
 }
 
-function updateMenuOverlay() {
-  if (state.isMenuOpen) {
-    smoother.paused(true);
-    menuOverlayTl.play();
-  } else {
-    smoother.paused(false);
-    menuOverlayTl.reverse();
-  }
-}
-
 export function toggleMenu() {
-  state.isMenuOpen = !state.isMenuOpen;
-  updateMenuOverlay();
+  state.isOverviewOpen = !state.isOverviewOpen;
   updateMenuToggle();
+  toggleOverview();
 }
 
 export function initMenu() {
-  menuLinkToggle();
+  sectionOverviewToggle();
   menuOverlayTl = createMenuOverlayTimeline();
 }

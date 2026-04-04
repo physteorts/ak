@@ -33,7 +33,7 @@ function headerReveal() {
         duration: 1,
         ease: "power2.inOut",
       },
-      "-=0.3",
+      "-=0.5",
     )
     .to(dom.menuToggle, {
       autoAlpha: 1,
@@ -69,7 +69,7 @@ function createMenuToggleTimeline() {
 }
 
 export function updateMenuToggle() {
-  if (state.isMenuOpen) {
+  if (state.isOverviewOpen) {
     menuToggleTl.play();
   } else {
     menuToggleTl.reverse();
