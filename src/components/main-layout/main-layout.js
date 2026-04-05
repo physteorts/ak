@@ -63,7 +63,7 @@ export function createToggleOverviewTimeline() {
     });
 
     gsap.to(dom.menuContent, {
-      width: "50%",
+      width: "55%",
     });
   }
 
@@ -250,7 +250,7 @@ function initElasticScroll() {
           elasticTimer = setTimeout(() => {
             toggleElasticEffect(false);
             elasticTimer = null;
-          }, 700);
+          }, 1000);
         }
       },
     });
@@ -262,6 +262,7 @@ function createSmoother() {
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 2,
+    smoothTouch: true,
     effects: true,
   });
 }

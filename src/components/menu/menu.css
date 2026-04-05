@@ -38,14 +38,15 @@
 }
 
 .menu-link-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: calc(0.5rem + clamp(3vh, 3vw, 99vw));
+  fill: none;
+  stroke: var(--bg);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  width: calc(1rem + clamp(1.5vh, 1.5vw, 99vw));
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background-color: var(--fg);
-  color: var(--bg);
   transition: all 0.3s ease;
 }
 
