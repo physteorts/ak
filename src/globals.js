@@ -10,6 +10,7 @@ export const dom = {
   menuToggle: null,
   menuOpenLabel: null,
   menuCloseLabel: null,
+  menuIcon: null,
   menuOverlay: null,
   menuContent: null,
   menuLinks: null,
@@ -38,6 +39,7 @@ export function initDom() {
   dom.menuToggle = document.querySelector(".menu-toggle");
   dom.menuOpenLabel = document.querySelector(".open-label");
   dom.menuCloseLabel = document.querySelector(".close-label");
+  dom.menuIcon = document.querySelector(".menu-icon");
   dom.menuOverlay = document.querySelector(".menu-overlay");
   dom.menuContent = document.querySelector(".menu-content");
   dom.menuLinks = document.querySelectorAll(".menu-link");

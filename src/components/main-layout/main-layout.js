@@ -36,6 +36,8 @@ function getResponsiveRadius() {
 
 export function createToggleOverviewTimeline() {
   const st = smoother.scrollTop();
+  const vh = window.innerHeight * 0.01;
+  const vw = window.innerWidth * 0.01;
 
   const sectionsArray = Array.from(dom.allSections);
   const currentRadii = sectionsArray.map(
@@ -48,24 +50,41 @@ export function createToggleOverviewTimeline() {
 
   const allTriggers = ScrollTrigger.getAll().filter((t) => t.vars.pin);
   const currentIndex = activeTrigger ? allTriggers.indexOf(activeTrigger) : 0;
-
   const rects = sectionsArray.map((sec) => sec.getBoundingClientRect());
 
-  const getGridPos = (index) => {
-    const i = index || 0;
-    const isLeft = i % 2 === 0;
-    const isTopRow = Math.floor(i / 2) === 0;
+  const isWideMode = window.innerWidth > window.innerHeight;
+  const isPortraitMobile = !isWideMode && window.innerWidth < 1200;
 
-    return {
-      x: isLeft ? "28vw" : "72vw",
-      y: (isTopRow ? window.innerHeight * 0.3 : window.innerHeight * 0.74) + st,
-    };
-  };
+  if (isPortraitMobile) {
+    gsap.to(dom.menuOverlay, {
+      width: "100vw",
+      height: "auto",
+      top: "8vh",
+    });
+
+    gsap.to(dom.menuContent, {
+      width: "50%",
+    });
+  }
+
+  const stackOffset = isPortraitMobile ? 5 * vh : 6 * vh;
+  const baseScale = isPortraitMobile ? 0.7 : 0.5;
+  const targetX = isPortraitMobile ? window.innerWidth / 2 : 67 * vw;
+  const verticalMidpoint = isPortraitMobile
+    ? window.innerHeight * 0.7
+    : window.innerHeight / 2;
+
+  const mobileCardHeight = window.innerWidth * 0.8;
+  const actualHeight = isPortraitMobile
+    ? mobileCardHeight * baseScale
+    : rects[0].height * baseScale;
+
+  const totalCards = sectionsArray.length;
+  const stackHeight = (totalCards - 1) * stackOffset;
+  const startPadding = verticalMidpoint - stackHeight / 2 - actualHeight / 2;
 
   if (overviewTl) overviewTl.kill();
-
   gsap.killTweensOf(sectionsArray);
-
   gsap.set(sectionsArray, { clearProps: OVERVIEW_LAYOUT_CLEAR_PROPS });
 
   overviewTl = gsap.timeline({
@@ -91,20 +110,21 @@ export function createToggleOverviewTimeline() {
     borderRadius: (i) => currentRadii[i],
     x: (i) => rects[i].left,
     y: (i) => rects[i].top + st,
-    xPercent: 0,
-    yPercent: 0,
-    transformOrigin: "center center",
+    transformOrigin: "center top",
+    overflow: "hidden",
   });
 
   overviewTl.to(sectionsArray, {
-    scale: 0.4,
-    borderRadius: `${getResponsiveRadius()}px`,
-    x: (i) => getGridPos(i).x,
-    y: (i) => getGridPos(i).y,
+    x: targetX,
     xPercent: -50,
-    yPercent: -50,
+    y: (i) => startPadding + i * stackOffset + st,
+    yPercent: 0,
+    height: (i) => (isPortraitMobile ? mobileCardHeight : rects[i].height),
+    scale: (i) => baseScale + i * 0.02,
+    borderRadius: `${getResponsiveRadius()}px`,
+    zIndex: (i) => i,
     stagger: {
-      each: 0.05,
+      amount: 0.3,
       from: currentIndex,
     },
   });
@@ -125,13 +145,12 @@ export function focusOverviewSection(section) {
   if (!section || !overviewTl) return;
 
   const sectionsArray = Array.from(dom.allSections);
+  // Filter out the active section so we can hide the rest
+  const otherSections = sectionsArray.filter((s) => s !== section);
+
   const st = smoother.scrollTop();
   const targetId = section.id || null;
   const target = targetId ? `#${targetId}` : null;
-  const reverseDuration = Math.max(
-    0.2,
-    overviewTl.duration() * overviewTl.progress(),
-  );
 
   suppressElasticDuringFocus = true;
   if (elasticTimer) {
@@ -142,11 +161,16 @@ export function focusOverviewSection(section) {
   smoother.paused(true);
   setOverviewHitTesting(true);
 
-  overviewTl.eventCallback("onReverseComplete", null);
-  overviewTl.reverse();
+  // 1. Immediately hide other sections
+  gsap.to(otherSections, {
+    autoAlpha: 0,
+    duration: 0.3,
+    overwrite: true,
+  });
 
+  // 2. Animate the chosen section to full screen
   gsap.to(section, {
-    autoAlpha: 1,
+    autoAlpha: 1, // Ensure target stays visible
     x: 0,
     y: st,
     xPercent: 0,
@@ -155,14 +179,20 @@ export function focusOverviewSection(section) {
     borderRadius: 0,
     width: window.innerWidth,
     height: window.innerHeight,
-    zIndex: 3,
-    duration: reverseDuration,
+    zIndex: 10, // Higher z-index to stay above the fading elements
+    duration: 0.6,
     ease: "power2.inOut",
     overwrite: true,
     onComplete: () => {
       gsap.killTweensOf(smoother);
 
+      // Reset all properties (this brings back autoAlpha for other sections)
       gsap.set(sectionsArray, { clearProps: OVERVIEW_LAYOUT_CLEAR_PROPS });
+      gsap.to(otherSections, {
+        autoAlpha: 1,
+        duration: 0,
+        overwrite: true,
+      });
 
       if (targetId === "intro") {
         smoother.scrollTop(0);
@@ -179,7 +209,7 @@ export function focusOverviewSection(section) {
         ScrollTrigger.update();
       });
 
-      gsap.delayedCall(0.35, () => {
+      gsap.delayedCall(0.4, () => {
         suppressElasticDuringFocus = false;
       });
     },
@@ -193,8 +223,8 @@ export const toggleElasticEffect = (shouldScale) => {
   gsap.to(dom.allSections, {
     scale: shouldScale ? targetScale : 1,
     borderRadius: shouldScale ? getResponsiveRadius() : 0,
-    duration: 1,
-    ease: "expo.out",
+    duration: 0.6,
+    ease: "power2.inOut",
     overwrite: true,
   });
 };
@@ -208,24 +238,19 @@ function initElasticScroll() {
       start: "top center",
       end: "bottom center",
       onToggle: (self) => {
-        // 1. Safety Checks
         if (window.scrollY === 0 && self.isActive) return;
         if (state.isOverviewOpen) return;
         if (suppressElasticDuringFocus) return;
 
-        // 2. Only trigger when a section BECOMES active
         if (self.isActive) {
-          // Clear any existing timer to "reset" the duration if the user scrolls fast
           if (elasticTimer) clearTimeout(elasticTimer);
 
-          // Start the effect
           toggleElasticEffect(true);
 
-          // 3. Stop the effect after a specific delay (e.g., 1000ms)
           elasticTimer = setTimeout(() => {
             toggleElasticEffect(false);
             elasticTimer = null;
-          }, 1000);
+          }, 700);
         }
       },
     });
@@ -237,7 +262,6 @@ function createSmoother() {
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 2,
-    smoothTouch: true,
     effects: true,
   });
 }

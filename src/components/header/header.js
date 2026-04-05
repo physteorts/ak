@@ -44,25 +44,54 @@ function createMenuToggleTimeline() {
   const tl = gsap.timeline({
     paused: true,
     defaults: {
-      duration: 0.5,
-      ease: "power1.inOut",
+      duration: 0.4,
+      ease: "power2.inOut",
     },
   });
 
-  tl.set(dom.menuCloseLabel, {
-    y: 15,
-  });
+  tl.set(dom.menuCloseLabel, { y: 15 });
 
-  tl.to(dom.menuOpenLabel, {
-    autoAlpha: 0,
-    y: -15,
-  }).to(
+  tl.to(
+    dom.header,
+    {
+      backgroundColor: "var(--bg)",
+      duration: 0.8,
+    },
+    0,
+  );
+
+  tl.to(
+    [dom.menuOpenLabel, dom.menuCloseLabel],
+    {
+      color: "var(--fg)",
+      duration: 0.3,
+    },
+    0,
+  );
+
+  tl.to(
+    dom.menuIcon,
+    {
+      backgroundColor: "var(--fg)",
+      fill: "var(--bg)",
+    },
+    0,
+  );
+
+  tl.to(
+    dom.menuOpenLabel,
+    {
+      autoAlpha: 0,
+      y: -15,
+    },
+    0,
+  ).to(
     dom.menuCloseLabel,
     {
       autoAlpha: 1,
       y: 0,
     },
-    "-=0.5",
+    "<",
   );
 
   return tl;

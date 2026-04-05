@@ -20,7 +20,6 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--bg);
   overflow: hidden;
-  outline: 1px solid var(--bg);
+  margin-bottom: -1px;
 }
