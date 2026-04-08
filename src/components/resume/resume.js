@@ -9,10 +9,11 @@ export function initResume() {
     scrollTrigger: {
       trigger: dom.resume,
       start: "top top",
-      end: "+=120%",
+      end: "+=200%",
       scrub: true,
       pin: true,
       anticipatePin: 1,
+      pinType: "fixed",
     },
   });
 }

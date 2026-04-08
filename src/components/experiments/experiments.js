@@ -13,6 +13,7 @@ export function initExperiments() {
       scrub: true,
       pin: true,
       anticipatePin: 1,
+      pinType: "fixed",
     },
   });
 }
