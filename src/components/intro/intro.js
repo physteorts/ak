@@ -26,7 +26,7 @@ export function initIntro() {
       scrub: true,
       pin: true,
       anticipatePin: 1,
-      pinType: "transform",
+      pinType: "fixed",
     },
   });
 
