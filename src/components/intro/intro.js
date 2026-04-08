@@ -26,7 +26,6 @@ export function initIntro() {
       scrub: true,
       pin: true,
       anticipatePin: 1,
-      ignoreMobileResize: true,
     },
   });
 
