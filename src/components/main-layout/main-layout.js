@@ -93,7 +93,6 @@ function createSmoother() {
     content: dom.sectionContainer,
     smooth: 2,
     effects: true,
-    ignoreMobileResize: true,
   });
 }
 
