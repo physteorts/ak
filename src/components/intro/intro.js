@@ -4,20 +4,21 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-function introTimeline() {
+export function initIntro() {
   gsap.set(dom.intro, { autoAlpha: 1 });
 
-  gsap.from(".large-text", {
-    autoAlpha: 0,
+  gsap.to(".text-wrapper", {
+    autoAlpha: 1,
     duration: 1,
-    ease: "power1.inOut",
+    ease: "power2.inOut",
   });
-}
 
-export function initIntro() {
-  introTimeline();
+  gsap.set(".reveal-wrapper", {
+    yPercent: 100,
+    scale: 0.4,
+  });
 
-  gsap.timeline({
+  const tl = gsap.timeline({
     scrollTrigger: {
       trigger: dom.intro,
       start: "top top",
@@ -27,4 +28,19 @@ export function initIntro() {
       anticipatePin: 1,
     },
   });
+
+  tl.to(".text-wrapper", {
+    scale: 0.8,
+    yPercent: -50,
+    ease: "power2.inOut",
+  }).to(
+    ".reveal-wrapper",
+    {
+      yPercent: 50,
+      scale: 0.8,
+      autoAlpha: 1,
+      ease: "power2.inOut",
+    },
+    "<0.1",
+  );
 }

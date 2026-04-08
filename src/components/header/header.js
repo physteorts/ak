@@ -1,43 +1,72 @@
 import "./header.css";
 import { dom, state } from "../../globals.js";
 import gsap from "gsap";
-import { toggleMenu } from "../menu/menu.js";
+import { focusOverviewSection } from "../main-layout/main-layout.js";
 
 let menuToggleTl;
+let overviewOverlayTl;
+
+function logoToggle() {
+  dom.logo.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (state.isOverviewOpen) toggleOverview();
+
+    focusOverviewSection(dom.intro);
+  });
+}
 
 function menuToggle() {
-  dom.menuToggle.addEventListener("click", toggleMenu);
+  dom.menuToggle.addEventListener("click", toggleOverview);
+}
+
+function menuLinkToggle() {
+  dom.overviewLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const targetId = link.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
+
+      toggleOverview();
+
+      focusOverviewSection(targetSection);
+    });
+  });
+}
+
+function createOverviewOverlayTimeline() {
+  const tl = gsap.timeline({
+    paused: true,
+    defaults: { ease: "power1.inOut", duration: 0.4 },
+  });
+
+  tl.to(dom.overviewOverlay, {
+    autoAlpha: 1,
+  });
+
+  tl.fromTo(
+    dom.overviewLinks,
+    { x: -20, autoAlpha: 0 },
+    { x: 0, autoAlpha: 1, stagger: 0.1 },
+    "-=0.3",
+  );
+
+  return tl;
 }
 
 function headerReveal() {
   gsap.set(dom.header, {
-    scale: 0.2,
-    left: "50%",
-    xPercent: -50,
-    yPercent: -100,
-    autoAlpha: 0,
+    autoAlpha: 1,
   });
 
   const tl = gsap.timeline();
 
-  tl.to(dom.header, {
-    yPercent: 0,
+  tl.to([dom.logo, dom.menuToggle], {
     autoAlpha: 1,
     duration: 1,
     ease: "power2.inOut",
-  })
-    .to(
-      dom.header,
-      {
-        scale: 1,
-        duration: 1,
-        ease: "power2.inOut",
-      },
-      "-=0.5",
-    )
-    .to(dom.menuToggle, {
-      autoAlpha: 1,
-    });
+  });
 }
 
 function createMenuToggleTimeline() {
@@ -50,33 +79,6 @@ function createMenuToggleTimeline() {
   });
 
   tl.set(dom.menuCloseLabel, { y: 15 });
-
-  tl.to(
-    dom.header,
-    {
-      backgroundColor: "var(--bg)",
-      duration: 0.8,
-    },
-    0,
-  );
-
-  tl.to(
-    [dom.menuOpenLabel, dom.menuCloseLabel],
-    {
-      color: "var(--fg)",
-      duration: 0.3,
-    },
-    0,
-  );
-
-  tl.to(
-    dom.menuIcon,
-    {
-      backgroundColor: "var(--fg)",
-      fill: "var(--bg)",
-    },
-    0,
-  );
 
   tl.to(
     dom.menuOpenLabel,
@@ -97,7 +99,21 @@ function createMenuToggleTimeline() {
   return tl;
 }
 
-export function updateMenuToggle() {
+function toggleOverviewOverlay() {
+  if (state.isOverviewOpen) {
+    overviewOverlayTl.play();
+  } else {
+    overviewOverlayTl.reverse();
+  }
+}
+
+function toggleOverview() {
+  state.isOverviewOpen = !state.isOverviewOpen;
+  updateMenuToggle();
+  toggleOverviewOverlay();
+}
+
+function updateMenuToggle() {
   if (state.isOverviewOpen) {
     menuToggleTl.play();
   } else {
@@ -105,8 +121,19 @@ export function updateMenuToggle() {
   }
 }
 
+function setOverviewOverlayTop() {
+  const headerHeight = dom.header ? dom.header.offsetHeight : 0;
+  gsap.set(dom.overviewOverlay, {
+    "--header-h": `${headerHeight}px`,
+  });
+}
+
 export function initHeader() {
   headerReveal();
   menuToggle();
   menuToggleTl = createMenuToggleTimeline();
+  logoToggle();
+  menuLinkToggle();
+  overviewOverlayTl = createOverviewOverlayTimeline();
+  setOverviewOverlayTop();
 }
