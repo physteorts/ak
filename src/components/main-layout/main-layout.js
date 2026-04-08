@@ -92,9 +92,8 @@ function createSmoother() {
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 2,
-    smoothTouch: true,
-    normalizeScroll: true,
     effects: true,
+    ignoreMobileResize: true,
   });
 }
 

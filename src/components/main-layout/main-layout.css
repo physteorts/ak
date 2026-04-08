@@ -1,15 +1,4 @@
 main {
-  --header-h: 0px;
-  --scale: 1;
-  --progress: 0;
-  transform: scale(var(--scale))
-    translateY(calc(var(--progress) * (var(--header-h) + 3.5dvh)));
-  border-top-left-radius: calc(
-    var(--progress) * (2rem + clamp(2dvh, 2dvw, 99dvw))
-  );
-  border-top-right-radius: calc(
-    var(--progress) * (2rem + clamp(2dvh, 2dvw, 99dvw))
-  );
   width: 100dvw;
   height: 100dvh;
   overflow: hidden;
