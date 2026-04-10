@@ -1,5 +1,5 @@
 import "./base.css";
-import { initDom, initState, dom } from "./globals.js";
+import { initDom, initState } from "./globals.js";
 import { initLoader } from "./components/loader/loader.js";
 import { initHeader } from "./components/header/header.js";
 import { initMainLayout } from "./components/main-layout/main-layout.js";
@@ -10,31 +10,31 @@ import { initContact } from "./components/contact/contact.js";
 import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
 
-function initApp() {
-  window.addEventListener("DOMContentLoaded", () => {
-    initDom();
-    initState();
+startApp();
 
-    dom.body.classList.add("is-ready");
-
-    const components = [
-      initHeader,
-      initMainLayout,
-      initIntro,
-      initExperiments,
-      initResume,
-      initContact,
-    ];
-
-    initLoader().then(() => {
-      components.forEach((init) => {
-        init();
-      });
-
-      inject();
-      injectSpeedInsights();
-    });
-  });
+async function startApp() {
+  document.body.classList.add("is-ready");
+  await initLoader();
+  initApp();
 }
 
-initApp();
+function initApp() {
+  initDom();
+  initState();
+
+  const components = [
+    initHeader,
+    initMainLayout,
+    initIntro,
+    initExperiments,
+    initResume,
+    initContact,
+  ];
+
+  components.forEach((initComponent) => {
+    initComponent();
+  });
+
+  inject();
+  injectSpeedInsights();
+}

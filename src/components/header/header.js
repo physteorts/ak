@@ -1,13 +1,13 @@
 import "./header.css";
 import { dom, state } from "../../globals.js";
 import gsap from "gsap";
-import { focusSection, smoother } from "../main-layout/main-layout.js";
+import { focusSection } from "../main-layout/main-layout.js";
 
 let menuToggleTl;
 let overviewOverlayTl;
 
 function logoToggle() {
-  dom.logo.addEventListener("click", (e) => {
+  dom.hLogo.addEventListener("click", (e) => {
     e.preventDefault();
 
     if (state.isOverviewOpen) toggleOverview();
@@ -30,9 +30,7 @@ function menuLinkToggle() {
 
       toggleOverview();
 
-      setTimeout(() => {
-        focusSection(targetSection);
-      }, 500);
+      focusSection(targetSection);
     });
   });
 }
@@ -64,7 +62,7 @@ function headerReveal() {
 
   const tl = gsap.timeline();
 
-  tl.to([dom.logo, dom.menuToggle], {
+  tl.to([dom.hLogo, dom.menuToggle], {
     autoAlpha: 1,
     duration: 1,
     ease: "power2.inOut",
@@ -113,12 +111,6 @@ function toggleOverviewOverlay() {
 
 function toggleOverview() {
   state.isOverviewOpen = !state.isOverviewOpen;
-
-  if (state.isOverviewOpen) {
-    smoother.paused(true);
-  } else {
-    smoother.paused(false);
-  }
 
   updateMenuToggle();
   toggleOverviewOverlay();

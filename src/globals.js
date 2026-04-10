@@ -1,14 +1,7 @@
 export const dom = {
   body: null,
-  loader: null,
-  lText: null,
-  lIcon: null,
-  lWave: null,
-  lFrame: null,
-  lLines: null,
   header: null,
-  logo: null,
-  logoIcon: null,
+  hLogo: null,
   menuToggle: null,
   menuOpenLabel: null,
   menuCloseLabel: null,
@@ -31,15 +24,8 @@ export const state = {
 
 export function initDom() {
   dom.body = document.body;
-  dom.loader = document.querySelector(".loading-screen");
-  dom.lText = document.querySelector(".loading-screen .loading-text");
-  dom.lIcon = document.querySelector(".loading-screen .logo-icon");
-  dom.lWave = document.querySelector(".loading-screen .liquid-wave");
-  dom.lLines = document.querySelectorAll(".loading-screen .ak-line");
-  dom.lFrame = document.querySelector(".loading-screen .frame");
   dom.header = document.querySelector("header");
-  dom.logo = document.querySelector("header .logo");
-  dom.logoIcon = document.querySelector("header .logo-icon");
+  dom.hLogo = document.querySelector("header .logo");
   dom.menuToggle = document.querySelector(".menu-toggle");
   dom.menuOpenLabel = document.querySelector(".open-label");
   dom.menuCloseLabel = document.querySelector(".close-label");

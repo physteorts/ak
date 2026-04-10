@@ -1,18 +1,3 @@
 import "./resume.css";
-import { dom } from "../../globals";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
-export function initResume() {
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: dom.resume,
-      start: "top top",
-      end: "+=100%",
-      scrub: true,
-      pin: true,
-      anticipatePin: 1,
-    },
-  });
-}
+export function initResume() { }

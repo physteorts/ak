@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-export let smoother;
+let smoother;
 
 function mainReveal() {
   gsap.set(dom.main, { autoAlpha: 1 });
@@ -13,17 +13,10 @@ function mainReveal() {
 }
 
 export function focusSection(section) {
+  if (!section || !smoother) return;
+
   ScrollTrigger.refresh();
-
-  const st = ScrollTrigger.getAll().find((t) => t.trigger === section);
-
-  let targetTop;
-
-  if (st) {
-    targetTop = st.start;
-  } else {
-    targetTop = smoother.offset(section, "top top");
-  }
+  const targetTop = section === dom.intro ? 0 : smoother.offset(section, "top top");
 
   smoother.scrollTo(targetTop, true);
 }
@@ -32,9 +25,7 @@ function createSmoother() {
   smoother = ScrollSmoother.create({
     wrapper: dom.main,
     content: dom.sectionContainer,
-    smooth: 1.5,
-    normalizeScroll: true,
-    effects: true,
+    smooth: 2,
   });
 }
 

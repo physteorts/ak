@@ -3,35 +3,9 @@
   visibility: hidden;
 }
 
-.text-wrapper {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.reveal-wrapper {
-  position: absolute;
-  opacity: 0;
-}
-
-.small-text {
-  font-size: calc(0.9rem + clamp(0.9dvh, 0.9dvw, 99dvw));
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.8;
-}
-
 .large-text {
   font-size: calc(2rem + clamp(2dvh, 6dvw, 99dvw));
   font-weight: 900;
   line-height: 0.85;
   text-transform: uppercase;
-}
-
-.space-bottom {
-  margin-bottom: 3dvh;
-}
-
-.space-left {
-  margin-left: 3dvh;
 }
