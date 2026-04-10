@@ -1,9 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-  --bg: rgb(240, 245, 249);
-  --fg: rgb(30, 32, 34);
-  --surface: rgb(201, 214, 223);
+  --bg: rgb(10, 10, 10);
+  --fg: rgb(230, 230, 230);
 }
 
 * {

@@ -13,7 +13,6 @@ export function initContact() {
       scrub: true,
       pin: true,
       anticipatePin: 1,
-      pinType: "fixed",
     },
   });
 }

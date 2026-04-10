@@ -8,25 +8,19 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export let smoother;
 let mainLayoutTl;
 
-function getSectionTopPosition(section) {
-  const sectionTrigger = ScrollTrigger.getAll().find(
-    (trigger) => trigger.vars?.trigger === section && trigger.vars?.pin,
-  );
-
-  if (sectionTrigger) {
-    return sectionTrigger.start;
-  }
-
-  return section.offsetTop;
-}
-
 function mainReveal() {
   gsap.set(dom.main, { autoAlpha: 1 });
   gsap.set(dom.body, { backgroundColor: "var(--fg)" });
 }
 
 function createMainLayoutTimeline() {
-  const headerHeight = dom.header ? dom.header.offsetHeight : 0;
+  const headerHeight = dom.header
+    ? dom.header.getBoundingClientRect().height
+    : 0;
+  gsap.set(dom.main, {
+    "--header-h": headerHeight + "px",
+  });
+
   mainLayoutTl = gsap.timeline({
     paused: true,
     defaults: { ease: "power2.inOut", duration: 0.6 },
@@ -40,14 +34,17 @@ function createMainLayoutTimeline() {
 
   mainLayoutTl
     .to(dom.main, {
-      "--progress": 1,
       "--scale": 0.95,
-      "--header-h": `${headerHeight}px`,
+      "--progress": 1,
+      borderTopLeftRadius: "calc(2rem + clamp(2dvh, 2dvw, 99dvw))",
+      borderTopRightRadius: "calc(2rem + clamp(2dvh, 2dvw, 99dvw))",
     })
     .to(
-      dom.sectionOverlay,
+      dom.allSections,
       {
-        opacity: 0.7,
+        autoAlpha: 0,
+        display: "none",
+        duration: 0.4,
       },
       "<",
     );
@@ -63,28 +60,20 @@ export const updateMainLayout = () => {
   }
 };
 
-export function focusOverviewSection(section) {
-  const targetId = section.id;
-
+export function focusSection(section) {
   ScrollTrigger.refresh();
 
-  const targetTop = targetId === "intro" ? 0 : getSectionTopPosition(section);
-  smoother.paused(false);
+  const st = ScrollTrigger.getAll().find((t) => t.trigger === section);
 
-  gsap.killTweensOf(smoother);
-  gsap.to(smoother, {
-    scrollTop: targetTop,
-    duration: 1,
-    ease: "power2.inOut",
-    overwrite: true,
-    onUpdate: () => {
-      ScrollTrigger.update();
-    },
-    onComplete: () => {
-      ScrollTrigger.refresh();
-      ScrollTrigger.update();
-    },
-  });
+  let targetTop;
+
+  if (st) {
+    targetTop = st.start;
+  } else {
+    targetTop = smoother.offset(section, "top top");
+  }
+
+  smoother.scrollTo(targetTop, true);
 }
 
 function createSmoother() {

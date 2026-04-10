@@ -1,7 +1,7 @@
 import "./header.css";
 import { dom, state } from "../../globals.js";
 import gsap from "gsap";
-import { focusOverviewSection } from "../main-layout/main-layout.js";
+import { focusSection, updateMainLayout } from "../main-layout/main-layout.js";
 
 let menuToggleTl;
 let overviewOverlayTl;
@@ -30,7 +30,9 @@ function menuLinkToggle() {
 
       toggleOverview();
 
-      focusOverviewSection(targetSection);
+      setTimeout(() => {
+        focusSection(targetSection);
+      }, 500);
     });
   });
 }
@@ -73,12 +75,45 @@ function createMenuToggleTimeline() {
   const tl = gsap.timeline({
     paused: true,
     defaults: {
-      duration: 0.4,
+      duration: 0.5,
       ease: "power2.inOut",
     },
   });
 
   tl.set(dom.menuCloseLabel, { y: 15 });
+
+  tl.to(
+    [dom.logo, dom.menuToggle],
+    {
+      backgroundColor: "var(--bg)",
+      color: "var(--fg)",
+    },
+    0,
+  );
+
+  tl.to(
+    [dom.logoIcon, dom.menuIcon],
+    {
+      backgroundColor: "var(--fg)",
+    },
+    0,
+  );
+
+  tl.to(
+    dom.logoIcon,
+    {
+      stroke: "var(--bg)",
+    },
+    0,
+  );
+
+  tl.to(
+    dom.menuIcon,
+    {
+      fill: "var(--bg)",
+    },
+    0,
+  );
 
   tl.to(
     dom.menuOpenLabel,
@@ -87,7 +122,9 @@ function createMenuToggleTimeline() {
       y: -15,
     },
     0,
-  ).to(
+  );
+
+  tl.to(
     dom.menuCloseLabel,
     {
       autoAlpha: 1,
@@ -110,6 +147,7 @@ function toggleOverviewOverlay() {
 function toggleOverview() {
   state.isOverviewOpen = !state.isOverviewOpen;
   updateMenuToggle();
+  updateMainLayout();
   toggleOverviewOverlay();
 }
 
@@ -121,13 +159,6 @@ function updateMenuToggle() {
   }
 }
 
-function setOverviewOverlayTop() {
-  const headerHeight = dom.header ? dom.header.offsetHeight : 0;
-  gsap.set(dom.overviewOverlay, {
-    "--header-h": `${headerHeight}px`,
-  });
-}
-
 export function initHeader() {
   headerReveal();
   menuToggle();
@@ -135,5 +166,4 @@ export function initHeader() {
   logoToggle();
   menuLinkToggle();
   overviewOverlayTl = createOverviewOverlayTimeline();
-  setOverviewOverlayTop();
 }
