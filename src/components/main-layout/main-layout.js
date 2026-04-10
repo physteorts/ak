@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-let smoother;
+export let smoother;
 
 function mainReveal() {
   gsap.set(dom.main, { autoAlpha: 1 });
@@ -29,15 +29,11 @@ export function focusSection(section) {
 }
 
 function createSmoother() {
-  ScrollTrigger.config({
-    ignoreMobileResize: true,
-  });
-
   smoother = ScrollSmoother.create({
     wrapper: dom.main,
     content: dom.sectionContainer,
-    smooth: 2,
-    smoothTouch: 0,
+    smooth: 1.5,
+    normalizeScroll: true,
     effects: true,
   });
 }

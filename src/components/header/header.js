@@ -1,7 +1,7 @@
 import "./header.css";
 import { dom, state } from "../../globals.js";
 import gsap from "gsap";
-import { focusSection } from "../main-layout/main-layout.js";
+import { focusSection, smoother } from "../main-layout/main-layout.js";
 
 let menuToggleTl;
 let overviewOverlayTl;
@@ -113,6 +113,13 @@ function toggleOverviewOverlay() {
 
 function toggleOverview() {
   state.isOverviewOpen = !state.isOverviewOpen;
+
+  if (state.isOverviewOpen) {
+    smoother.paused(true);
+  } else {
+    smoother.paused(false);
+  }
+
   updateMenuToggle();
   toggleOverviewOverlay();
 }

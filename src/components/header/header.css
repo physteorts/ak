@@ -4,7 +4,7 @@ header {
   left: 50%;
   transform: translateX(-50%);
   z-index: 99;
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -109,7 +109,7 @@ header .logo-icon {
   display: flex;
   flex-direction: column;
   gap: calc(0.5rem + clamp(0.5dvh, 0.5dvw, 99dvw));
-  margin-right: 5%;
+  margin-right: 2.5%;
   width: calc(9rem + clamp(9dvh, 9dvw, 99dvw));
 }
 
