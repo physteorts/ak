@@ -78,10 +78,15 @@ export function focusSection(section) {
 }
 
 function createSmoother() {
+  ScrollTrigger.config({
+    ignoreMobileResize: true,
+  });
+
   smoother = ScrollSmoother.create({
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 2,
+    smoothTouch: 0,
     normalizeScroll: true,
     effects: true,
   });

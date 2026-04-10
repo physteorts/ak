@@ -146,6 +146,7 @@ function toggleOverviewOverlay() {
 
 function toggleOverview() {
   state.isOverviewOpen = !state.isOverviewOpen;
+  document.body.classList.toggle("overview-open", state.isOverviewOpen);
   updateMenuToggle();
   updateMainLayout();
   toggleOverviewOverlay();

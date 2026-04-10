@@ -15,3 +15,9 @@ body {
   color: var(--fg);
   font-family: "Exo 2", Verdana, Geneva, Tahoma, sans-serif;
 }
+
+body.overview-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
