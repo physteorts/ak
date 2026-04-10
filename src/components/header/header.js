@@ -1,7 +1,7 @@
 import "./header.css";
 import { dom, state } from "../../globals.js";
 import gsap from "gsap";
-import { focusSection, updateMainLayout } from "../main-layout/main-layout.js";
+import { focusSection } from "../main-layout/main-layout.js";
 
 let menuToggleTl;
 let overviewOverlayTl;
@@ -12,7 +12,7 @@ function logoToggle() {
 
     if (state.isOverviewOpen) toggleOverview();
 
-    focusOverviewSection(dom.intro);
+    focusSection(dom.intro);
   });
 }
 
@@ -83,39 +83,6 @@ function createMenuToggleTimeline() {
   tl.set(dom.menuCloseLabel, { y: 15 });
 
   tl.to(
-    [dom.logo, dom.menuToggle],
-    {
-      backgroundColor: "var(--bg)",
-      color: "var(--fg)",
-    },
-    0,
-  );
-
-  tl.to(
-    [dom.logoIcon, dom.menuIcon],
-    {
-      backgroundColor: "var(--fg)",
-    },
-    0,
-  );
-
-  tl.to(
-    dom.logoIcon,
-    {
-      stroke: "var(--bg)",
-    },
-    0,
-  );
-
-  tl.to(
-    dom.menuIcon,
-    {
-      fill: "var(--bg)",
-    },
-    0,
-  );
-
-  tl.to(
     dom.menuOpenLabel,
     {
       autoAlpha: 0,
@@ -147,7 +114,6 @@ function toggleOverviewOverlay() {
 function toggleOverview() {
   state.isOverviewOpen = !state.isOverviewOpen;
   updateMenuToggle();
-  updateMainLayout();
   toggleOverviewOverlay();
 }
 
@@ -159,6 +125,15 @@ function updateMenuToggle() {
   }
 }
 
+function setHeight() {
+  const headerHeight = dom.header
+    ? dom.header.getBoundingClientRect().height
+    : 0;
+  gsap.to(dom.overviewOverlay, {
+    "--header-h": `${headerHeight}px`,
+  });
+}
+
 export function initHeader() {
   headerReveal();
   menuToggle();
@@ -166,4 +141,5 @@ export function initHeader() {
   logoToggle();
   menuLinkToggle();
   overviewOverlayTl = createOverviewOverlayTimeline();
+  setHeight();
 }

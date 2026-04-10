@@ -89,16 +89,17 @@ header .logo-icon {
 }
 
 .overview-overlay {
+  --header-h: 0px;
   position: fixed;
-  top: 6dvh;
+  top: calc(var(--header-h) + 3dvh);
   left: 50%;
   transform: translateX(-50%);
   width: 100dvw;
   height: 100dvh;
   z-index: 98;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-start;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -107,16 +108,16 @@ header .logo-icon {
 .overview-content {
   display: flex;
   flex-direction: column;
-  gap: calc(0.6rem + clamp(0.6dvh, 0.9dvw, 99dvw));
-  margin-right: 2.5%;
-  width: calc(11rem + clamp(11dvh, 11dvw, 99dvw));
+  gap: calc(0.5rem + clamp(0.5dvh, 0.5dvw, 99dvw));
+  margin-right: 5%;
+  width: calc(9rem + clamp(9dvh, 9dvw, 99dvw));
 }
 
 .overview-link {
   border-radius: calc(1.5rem + clamp(1.5dvh, 1.5dvw, 99dvw));
   padding: calc(0.3rem + clamp(0.3dvh, 0.3dvw, 99dvw));
   background-color: var(--fg);
-  font-size: calc(1rem + clamp(1dvh, 1dvw, 99dvw));
+  font-size: calc(0.8rem + clamp(0.8dvh, 0.8dvw, 99dvw));
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 600;
@@ -136,7 +137,7 @@ header .logo-icon {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: calc(1.6rem + clamp(1.6dvh, 1.6dvw, 99dvh));
+  width: calc(1.4rem + clamp(1.4dvh, 1.4dvw, 99dvh));
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background-color: var(--bg);

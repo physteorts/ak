@@ -22,7 +22,7 @@ export function initIntro() {
     scrollTrigger: {
       trigger: dom.intro,
       start: "top top",
-      end: "+=200%",
+      end: "+=150%",
       scrub: true,
       pin: true,
       anticipatePin: 1,

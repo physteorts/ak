@@ -9,7 +9,7 @@ export function initExperiments() {
     scrollTrigger: {
       trigger: dom.experiments,
       start: "top top",
-      end: "+=200%",
+      end: "+=100%",
       scrub: true,
       pin: true,
       anticipatePin: 1,

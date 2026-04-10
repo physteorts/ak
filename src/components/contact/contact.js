@@ -9,7 +9,7 @@ export function initContact() {
     scrollTrigger: {
       trigger: dom.contact,
       start: "top top",
-      end: "+=200%",
+      end: "+=100%",
       scrub: true,
       pin: true,
       anticipatePin: 1,
