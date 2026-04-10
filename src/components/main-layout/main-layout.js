@@ -26,11 +26,9 @@ function createMainLayoutTimeline() {
     defaults: { ease: "power2.inOut", duration: 0.6 },
     onStart: () => {
       smoother.paused(true);
-      ScrollTrigger.normalizeScroll(false);
     },
     onReverseComplete: () => {
       smoother.paused(false);
-      ScrollTrigger.normalizeScroll(true);
     },
   });
 
