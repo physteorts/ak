@@ -8,6 +8,41 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export let smoother;
 let mainLayoutTl;
 
+function lockMobileViewportForOverview() {
+  const viewportHeight = window.visualViewport
+    ? window.visualViewport.height
+    : window.innerHeight;
+
+  gsap.set(document.documentElement, {
+    overflow: "hidden",
+    overscrollBehavior: "none",
+  });
+
+  gsap.set(dom.body, {
+    overflow: "hidden",
+    touchAction: "none",
+    overscrollBehavior: "none",
+  });
+
+  gsap.set(dom.main, {
+    height: `${viewportHeight}px`,
+  });
+}
+
+function unlockMobileViewportAfterOverview() {
+  gsap.set(document.documentElement, {
+    clearProps: "overflow, overscrollBehavior",
+  });
+
+  gsap.set(dom.body, {
+    clearProps: "overflow, touchAction, overscrollBehavior",
+  });
+
+  gsap.set(dom.main, {
+    clearProps: "height",
+  });
+}
+
 function mainReveal() {
   gsap.set(dom.main, { autoAlpha: 1 });
   gsap.set(dom.body, { backgroundColor: "var(--fg)" });
@@ -54,9 +89,11 @@ function createMainLayoutTimeline() {
 
 export const updateMainLayout = () => {
   if (state.isOverviewOpen) {
+    lockMobileViewportForOverview();
     gsap.set(dom.main, { clearProps: "transform, translate, matrix" });
     mainLayoutTl.play();
   } else {
+    unlockMobileViewportAfterOverview();
     mainLayoutTl.reverse();
   }
 };
@@ -87,7 +124,6 @@ function createSmoother() {
     content: dom.sectionContainer,
     smooth: 2,
     smoothTouch: 0,
-    normalizeScroll: true,
     effects: true,
   });
 }
