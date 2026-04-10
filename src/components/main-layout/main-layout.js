@@ -81,7 +81,6 @@ function createSmoother() {
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 2,
-    normalizeScroll: true,
     effects: true,
   });
 }
