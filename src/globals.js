@@ -18,7 +18,6 @@ export const dom = {
   overviewLinks: null,
   main: null,
   sectionContainer: null,
-  sectionOverlay: null,
   allSections: null,
   intro: null,
   experiments: null,
@@ -50,7 +49,6 @@ export function initDom() {
   dom.overviewLinks = document.querySelectorAll(".overview-link");
   dom.main = document.querySelector("main");
   dom.sectionContainer = document.querySelector(".section-container");
-  dom.sectionOverlay = document.querySelector(".section-overlay");
   dom.allSections = document.querySelectorAll("section");
   dom.intro = document.querySelector("#intro");
   dom.experiments = document.querySelector("#experiments");

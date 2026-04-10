@@ -2,7 +2,7 @@ main {
   --header-h: 0px;
   --progress: 0;
   --scale: 1;
-  transform: scale(var(--scale)) translateY(calc(var(--progress) * (var(--header-h) + 6.5dvh))) !important;
+  transform: scale(var(--scale)) translateY(calc(var(--progress) * (var(--header-h) + 6.5dvh)));
   width: 100dvw;
   height: 100dvh;
   overflow: hidden;

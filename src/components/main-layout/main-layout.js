@@ -54,6 +54,7 @@ function createMainLayoutTimeline() {
 
 export const updateMainLayout = () => {
   if (state.isOverviewOpen) {
+    gsap.set(dom.main, { clearProps: "transform, translate, matrix" });
     mainLayoutTl.play();
   } else {
     mainLayoutTl.reverse();
@@ -81,6 +82,7 @@ function createSmoother() {
     wrapper: dom.main,
     content: dom.sectionContainer,
     smooth: 2,
+    normalizeScroll: true,
     effects: true,
   });
 }
