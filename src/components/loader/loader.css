@@ -12,7 +12,7 @@
 
 .loading-text {
   color: var(--fg);
-  font-size: calc(0.8rem + clamp(0.8dvh, 0.8dvw, 99dvw));
+  font-size: calc(0.7rem + clamp(0.7dvh, 0.7dvw, 99dvw));
   text-transform: uppercase;
   letter-spacing: 0.35em;
   opacity: 0.7;

@@ -47,8 +47,8 @@ function createOverviewOverlayTimeline() {
 
   tl.fromTo(
     dom.overviewLinks,
-    { x: -20, autoAlpha: 0 },
-    { x: 0, autoAlpha: 1, stagger: 0.1 },
+    { y: -10, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, stagger: 0.1 },
     "-=0.3",
   );
 
@@ -73,7 +73,7 @@ function createMenuToggleTimeline() {
   const tl = gsap.timeline({
     paused: true,
     defaults: {
-      duration: 0.5,
+      duration: 0.6,
       ease: "power2.inOut",
     },
   });
